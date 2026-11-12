@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aufgaben</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="bg-glow glow-a"></div>
+  <div class="bg-glow glow-b"></div>
+
+  <main class="app">
+    <header class="top">
+      <div>
+        <p class="eyebrow" id="today"></p>
+        <h1>Meine Aufgaben</h1>
+      </div>
+      <button class="icon-btn" id="theme" title="Design wechseln" aria-label="Design wechseln">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </header>
+
+    <section class="progress-card">
+      <div class="progress-text">
+        <strong id="progress-label">0 von 0 erledigt</strong>
+        <span id="progress-pct">0 %</span>
+      </div>
+      <div class="bar"><div class="bar-fill" id="bar-fill"></div></div>
+    </section>
+
+    <form class="add" id="add-form" autocomplete="off">
+      <input id="new-text" type="text" placeholder="Was steht an?" maxlength="200" required>
+      <div class="add-row">
+        <div class="prio" id="prio-pick" role="radiogroup" aria-label="Priorität">
+          <button type="button" data-p="0" class="p0" title="Niedrig">Niedrig</button>
+          <button type="button" data-p="1" class="p1 active" title="Normal">Normal</button>
+          <button type="button" data-p="2" class="p2" title="Hoch">Hoch</button>
+        </div>
+        <input id="new-due" type="date" aria-label="Fällig am">
+        <button class="primary" type="submit">Hinzufügen</button>
+      </div>
+    </form>
+
+    <nav class="filters" id="filters">
+      <button data-f="all" class="active">Aufgaben <span id="c-all">0</span></button>
+      <button data-f="archive">Archiv <span id="c-archive">0</span></button>
+      <select id="sort" class="sort" aria-label="Sortieren nach">
+        <option value="new">Neueste zuerst</option>
+        <option value="prio">Nach Priorität</option>
+        <option value="due">Nach Fälligkeit</option>
+      </select>
+    </nav>
+
+    <ul class="list" id="list"></ul>
+
+    <div class="empty" id="empty" hidden>
+      <div class="empty-icon">✓</div>
+      <p id="empty-text">Alles erledigt.</p>
+    </div>
+
+    <footer class="foot">
+      <span id="foot-info"></span>
+      <button class="link danger" id="clear-archive" hidden>Archiv leeren</button>
+    </footer>
+  </main>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-text">
+      <div class="modal-icon">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2m-9 0l1 14h8l1-14M10 11v5M14 11v5"/></svg>
+      </div>
+      <h2 id="modal-title"></h2>
+      <p id="modal-text"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" id="modal-cancel">Abbrechen</button>
+        <button type="button" class="btn-danger" id="modal-ok">Endgültig löschen</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/script.js"></script>
+</body>
+</html>
